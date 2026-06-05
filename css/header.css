@@ -1,0 +1,32 @@
+/*
+ * Guide: shrinking-header-on-scroll
+ * Retrieved via: npx modern-web-guidance retrieve "shrinking-header-on-scroll"
+ *
+ * Key guidance applied:
+ *  - Feature-detect BOTH animation-timeline AND animation-range — some browsers
+ *    support one but not the other, so both checks are required
+ *  - animation-range MUST be declared AFTER the animation shorthand. The shorthand
+ *    silently resets animation-range if it was declared first
+ *  - The header MUST be position: fixed (not static or relative). Using percentage
+ *    values in animation-range on in-flow elements would shrink the scroll height,
+ *    causing the computed percentage to change as the animation plays
+ *  - Fallback: a scroll listener that manually interpolates height (see js/fallbacks.js)
+ */
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: scroll()) and (animation-range: 0% 100%)) {
+    @keyframes shrink-header {
+      to { height: var(--header-height-shrunk); }
+    }
+
+    header {
+      /*
+       * animation shorthand declared first.
+       * animation-timeline and animation-range follow — order matters.
+       */
+      animation: shrink-header auto linear both;
+      animation-timeline: scroll(block root);
+      animation-range: 0px 150px;
+    }
+  }
+}

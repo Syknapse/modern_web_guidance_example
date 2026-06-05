@@ -1,0 +1,50 @@
+/*
+ * Guide: scroll-entry-exit-effects
+ * Retrieved via: npx modern-web-guidance retrieve "scroll-entry-exit-effects"
+ *
+ * Key guidance applied:
+ *  - Use two separate @keyframes — one for entry (fill-mode: backwards) and one
+ *    for exit (fill-mode: forwards). The fill modes must be declared per-animation
+ *    inside the animation shorthand
+ *  - animation-range: entry, exit — maps the first animation to the entry range
+ *    and the second to the exit range. MUST be declared AFTER the animation shorthand
+ *  - animation-timeline: view() — creates an anonymous view-timeline on each card,
+ *    tracking its visibility in the block axis
+ *  - Only animate compositor-friendly properties (opacity, transform) for
+ *    smooth, stutter-free animation
+ *  - Fallback: IntersectionObserver using intersectionRatio (see js/fallbacks.js)
+ */
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    @keyframes card-in {
+      from {
+        opacity: 0;
+        transform: translateY(90px) scale(0.96);
+      }
+    }
+
+    @keyframes card-out {
+      to {
+        opacity: 0;
+        transform: translateY(-60px) scale(0.96);
+      }
+    }
+
+    .feature-card {
+      /*
+       * animation shorthand first with per-animation fill-mode:
+       *   card-in  → backwards (holds from-state before animation starts)
+       *   card-out → forwards  (holds to-state after animation ends)
+       *
+       * animation-timeline and animation-range follow — they MUST come after
+       * the shorthand or the shorthand resets them to their initial values.
+       */
+      animation:
+        card-in  auto linear backwards,
+        card-out auto linear forwards;
+      animation-timeline: view();
+      animation-range: entry, exit;
+    }
+  }
+}
