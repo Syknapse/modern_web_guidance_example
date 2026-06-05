@@ -1,6 +1,6 @@
 # Modern Web Guidance — In Practice
 
-**Live site:** https://syknapse.github.io/modern_web_guidance_example/
+**Live site:** <https://syknapse.github.io/modern_web_guidance_example/>
 
 A project demonstrating the use of agentic AI development with [Claude Code](https://claude.ai/code) and the [Modern Web Guidance](https://github.com/GoogleChrome/modern-web-guidance) skill by Google Chrome.
 
@@ -21,8 +21,8 @@ Modern Web Guidance is a comprehensive set of skills that "embed web platform ex
 For this project, Claude:
 
 1. Ran `npx modern-web-guidance search "<query>"` to find the relevant guide for each effect
-2. Retrieved the full guide with `npx modern-web-guidance retrieve "<id>"`
-3. Followed the guide's recommendations exactly — including declaration order gotchas, required feature-detection guards, accessibility requirements, and correct fallback strategies
+1. Retrieved the full guide with `npx modern-web-guidance retrieve "<id>"`
+1. Followed the guide's recommendations exactly — including declaration order gotchas, required feature-detection guards, accessibility requirements, and correct fallback strategies
 
 This is a practical example of **skills-augmented development**: the model's output quality is raised by giving it access to the right knowledge at the right moment.
 
