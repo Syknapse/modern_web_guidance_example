@@ -22,7 +22,7 @@
 
 .hero {
   position: relative;
-  height: 100vh;
+  height: 130vh;
   overflow: clip; /* clip, not hidden — see guide note above */
   display: flex;
   align-items: center;
@@ -184,8 +184,13 @@
 }
 
 @keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(7px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(7px);
+  }
 }
 
 /* ─── Parallax scroll-driven animation ──────────────────────── */
@@ -198,7 +203,9 @@
        * as the page scrolls UP. Net visual effect: background appears to move
        * slower than the content above it — classic "distant object" parallax.
        */
-      to { transform: translateY(200px); }
+      to {
+        transform: translateY(320px);
+      }
     }
 
     @keyframes parallax-accents {
@@ -206,19 +213,21 @@
        * Negative translateY: the layer moves UP faster than the natural scroll.
        * Net visual effect: accent shapes appear to rush past — "close object" parallax.
        */
-      to { transform: translateY(-200px); }
+      to {
+        transform: translateY(700px);
+      }
     }
 
     .layer-bg {
       animation: parallax-bg linear both;
-      animation-timeline: scroll();
-      animation-range: 0px 100vh;
+      animation-timeline: scroll(root);
+      animation-range: 0px 130vh;
     }
 
     .layer-accents {
       animation: parallax-accents linear both;
-      animation-timeline: scroll();
-      animation-range: 0px 100vh;
+      animation-timeline: scroll(root);
+      animation-range: 0px 130vh;
     }
   }
 }

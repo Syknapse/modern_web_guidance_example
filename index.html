@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -18,23 +18,22 @@
     <link rel="stylesheet" href="css/feature-cards.css" />
   </head>
   <body>
-
-    <!--
-      Guide: scroll-progress-indicator
-      A thin bar that fills left-to-right as you scroll. Driven by CSS alone —
-      no JavaScript — using animation-timeline: scroll().
-      aria-hidden="true" is mandatory: the bar is purely decorative and must
-      not appear in the accessibility tree as an unnamed empty element.
-    -->
-    <div id="progress" aria-hidden="true" role="presentation"></div>
-
     <!--
       Guide: shrinking-header-on-scroll
-      This header starts at 72px tall and shrinks to 48px over the first 150px
+      This header starts at 100px tall and shrinks to 36px over the first 150px
       of scroll. The animation is linked to the root scroller via
       animation-timeline: scroll(block root) with animation-range: 0px 150px.
     -->
     <header>
+      <!--
+        Guide: scroll-progress-indicator
+        Lives inside <header> so it anchors to the header's bottom edge and never
+        overlaps the logo. Uses scroll(root) rather than scroll() to explicitly
+        target the root scroller — necessary because the element is inside a
+        position:fixed ancestor.
+        aria-hidden="true" is mandatory per the guide: purely decorative.
+      -->
+      <div id="progress" aria-hidden="true" role="presentation"></div>
       <div class="header-inner">
         <a href="#" class="logo">
           <span class="logo-mark" aria-hidden="true">MWG</span>
@@ -50,7 +49,9 @@
             rel="noopener noreferrer"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+              <path
+                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"
+              />
             </svg>
             GitHub
           </a>
@@ -59,7 +60,6 @@
     </header>
 
     <main>
-
       <!-- ═══════════════════════════════════════════════════════════
            HERO SECTION
            Guide: parallax-scroll-effects
@@ -69,7 +69,6 @@
            scroll away from the hero.
       ════════════════════════════════════════════════════════════════ -->
       <section class="hero" id="hero" aria-labelledby="hero-heading">
-
         <!-- Layer 1: decorative gradient background (parallax: slow/far) -->
         <div class="layer layer-bg" aria-hidden="true"></div>
 
@@ -83,20 +82,16 @@
         <!-- Layer 3: content (no parallax — maximum readability) -->
         <div class="layer layer-content">
           <div class="hero-eyebrow">
-            <span class="guide-badge">parallax-scroll-effects</span>
-            <span class="hero-built-by">
-              Built with
-              <a href="https://claude.ai/code" target="_blank" rel="noopener noreferrer">Claude Code</a>
-            </span>
+            <span class="guide-badge">modern-web-guidance@googlechrome</span>
+            <span class="hero-built-by"> An agentic skill by Google </span>
           </div>
 
-          <h1 id="hero-heading">Modern CSS,<br />Guided by Google</h1>
+          <h1 id="hero-heading">Modern Web Guidance<br />in Practice</h1>
 
           <p class="hero-lead">
-            A showcase of <strong style="color: var(--color-text)">Claude Code</strong>
-            using the <strong style="color: var(--color-text)">Modern Web Guidance</strong>
-            skill to implement scroll-driven animations — no JavaScript required,
-            no outdated patterns, no guesswork.
+            A showcase of <strong style="color: var(--color-text)">Claude Code</strong> using the
+            <strong style="color: var(--color-text)">Modern Web Guidance</strong>
+            skill to implement scroll-driven CSS animations, following industry standard best practices.
           </p>
 
           <a href="#about" class="scroll-cta">
@@ -104,70 +99,56 @@
             <span class="scroll-cta-arrow" aria-hidden="true">↓</span>
           </a>
         </div>
-
       </section>
-
 
       <!-- ═══════════════════════════════════════════════════════════
            ABOUT SECTION
       ════════════════════════════════════════════════════════════════ -->
       <section class="about" id="about" aria-labelledby="about-heading">
         <div class="container">
-
-          <h2 class="about-heading" id="about-heading">
-            How this page was built
-          </h2>
+          <h2 class="about-heading" id="about-heading">How this page was built</h2>
 
           <p class="about-lead">
-            This page was built by <strong>Claude Code</strong>, Anthropic's AI coding
-            assistant, using the <strong>Modern Web Guidance</strong> plugin published
-            by Google Chrome. Instead of relying solely on training data — which can
-            contain outdated patterns or miss important implementation nuances —
-            Claude consulted a dedicated guide for each scroll effect before writing
-            a single line of CSS.
+            This page was built using <strong>Claude Code</strong>, Anthropic's AI coding assistant, guided by the
+            <strong>Modern Web Guidance</strong> plugin from Google Chrome. Instead of relying solely on training data —
+            which can contain outdated patterns or miss important nuances — Claude consulted a dedicated guide for each
+            scroll effect, as a demonstration of how this skill informs its development and ensures high quality
+            implementation.
           </p>
 
           <div class="about-cards">
             <div class="about-card">
               <h3>What is the skill?</h3>
               <p>
-                Modern Web Guidance is a Claude Code plugin that gives Claude access
-                to a curated library of best practice guides for modern HTML, CSS, and
-                JavaScript features. Each guide covers the correct implementation
-                pattern, browser support details, what to avoid, and how to write
-                accessible fallbacks. Claude searches and retrieves guides at
-                implementation time — like having the Chrome team's documentation
-                available inline during coding.
+                Modern Web Guidance is a set of agentic skills that gives Claude access to a curated library of best
+                practice guides for modern HTML, CSS, and JavaScript features. Each guide covers the correct
+                implementation pattern, browser support details, what to avoid, and how to write accessible fallbacks.
+                Claude searches and retrieves guides at implementation time — like having the Chrome team's
+                documentation available inline during coding.
               </p>
             </div>
             <div class="about-card">
               <h3>How Claude used it</h3>
               <p>
                 For each of the four scroll effects on this page, Claude ran
-                <code>npx modern-web-guidance search "&lt;query&gt;"</code> to find the
-                relevant guide, then
-                <code>npx modern-web-guidance retrieve "&lt;id&gt;"</code> to read it in full.
-                The implementation followed the guide exactly — including specifics
-                like declaration order, required feature-detection guards, and
-                accessibility requirements that are easy to miss without authoritative
-                guidance.
+                <code>npx modern-web-guidance search "&lt;query&gt;"</code> to find the relevant guide, then
+                <code>npx modern-web-guidance retrieve "&lt;id&gt;"</code> to read it in full. The implementation
+                followed the guide exactly — including specifics like declaration order, required feature-detection
+                guards, and accessibility requirements that are easy to miss without authoritative guidance.
               </p>
             </div>
             <div class="about-card">
               <h3>Why it matters</h3>
               <p>
-                Web APIs evolve quickly. A model's training data captures a snapshot
-                of the web at a point in time — scroll-driven animations, for example,
-                had three separate specification iterations before stabilising in 2023.
-                The skill keeps Claude's output aligned with the current specification
-                and Chrome team recommendations, not with patterns from two years ago.
+                Web APIs evolve quickly. A model's training data captures a snapshot of the web at a point in time —
+                scroll-driven animations, for example, had three separate specification iterations before stabilising in
+                2023. The skill keeps Claude's output aligned with the current specification and Chrome team
+                recommendations, not with patterns from two years ago.
               </p>
             </div>
           </div>
-
         </div>
       </section>
-
 
       <!-- ═══════════════════════════════════════════════════════════
            FEATURES SECTION
@@ -177,21 +158,16 @@
       ════════════════════════════════════════════════════════════════ -->
       <section class="features" id="features" aria-labelledby="features-heading">
         <div class="container">
-
           <div class="features-header">
-            <h2 class="features-heading" id="features-heading">
-              What you're scrolling through
-            </h2>
+            <h2 class="features-heading" id="features-heading">What you're scrolling through</h2>
             <p class="features-lead">
-              Each card below describes one of the four modern CSS features used on
-              this very page. The cards themselves demonstrate
-              <code>scroll-entry-exit-effects</code> — scroll past them to watch the
-              animations play.
+              Each card below describes one of the four modern CSS features used on this very page. The cards themselves
+              demonstrate
+              <code>scroll-entry-exit-effects</code> — scroll past them to watch the animations play.
             </p>
           </div>
 
           <div class="cards-grid">
-
             <!-- ─── Card 1: Scroll Progress Bar ──────────────────── -->
             <article class="feature-card" aria-labelledby="card1-title">
               <div class="card-header">
@@ -201,28 +177,26 @@
               <div class="card-body">
                 <div class="card-block">
                   <strong>What you're seeing</strong>
-                  The thin gradient bar pinned to the very top of the page. It
-                  fills from left to right as you scroll through the document.
+                  The thin gradient bar pinned to the very top of the page. It fills from left to right as you scroll
+                  through the document.
                 </div>
                 <div class="card-block">
                   <strong>How it works</strong>
-                  A pure CSS <code>scaleX(0 → 1)</code> keyframe animation is
-                  linked to the root scroller using
-                  <code>animation-timeline: scroll()</code>. The browser drives
-                  the animation's progress directly from the scroll position —
-                  no JavaScript, no <code>requestAnimationFrame</code>.
+                  A pure CSS <code>scaleX(0 → 1)</code> keyframe animation is linked to the root scroller using
+                  <code>animation-timeline: scroll()</code>. The browser drives the animation's progress directly from
+                  the scroll position — no JavaScript, no <code>requestAnimationFrame</code>.
                 </div>
-                <pre class="code-snippet">animation: grow-progress auto linear;
-animation-timeline: scroll();</pre>
+                <pre class="code-snippet">
+animation: grow-progress auto linear;
+animation-timeline: scroll();</pre
+                >
                 <div class="card-why">
                   <strong>Why the skill mattered</strong>
                   The guide explicitly warned not to use the
-                  <code>scroll-timeline-polyfill</code> package as a fallback — it
-                  is not feature-complete and has known issues. It also required
-                  <code>aria-hidden="true"</code> on the progress element (the bar
-                  is decorative and must be removed from the accessibility tree),
-                  and specified the correct <code>@supports</code> guard to wrap
-                  the animation block.
+                  <code>scroll-timeline-polyfill</code> package as a fallback — it is not feature-complete and has known
+                  issues. It also required <code>aria-hidden="true"</code> on the progress element (the bar is
+                  decorative and must be removed from the accessibility tree), and specified the correct
+                  <code>@supports</code> guard to wrap the animation block.
                 </div>
               </div>
             </article>
@@ -236,30 +210,29 @@ animation-timeline: scroll();</pre>
               <div class="card-body">
                 <div class="card-block">
                   <strong>What you're seeing</strong>
-                  The navigation bar at the top starts at 72 px tall and smoothly
-                  shrinks to 48 px as you scroll down the first 150 px of the page.
-                  Scroll back to the top to see it expand.
+                  The navigation bar at the top starts at 72 px tall and smoothly shrinks to 48 px as you scroll down
+                  the first 150 px of the page. Scroll back to the top to see it expand.
                 </div>
                 <div class="card-block">
                   <strong>How it works</strong>
-                  The header's height keyframe is pegged to a precise pixel range
-                  of the root scroller using <code>animation-range: 0px 150px</code>.
-                  No scroll listener, no class toggling — the browser maps the
+                  The header's height keyframe is pegged to a precise pixel range of the root scroller using
+                  <code>animation-range: 0px 150px</code>. No scroll listener, no class toggling — the browser maps the
                   scroll offset directly to the animation's progress.
                 </div>
-                <pre class="code-snippet">animation: shrink-header auto linear both;
+                <pre class="code-snippet">
+animation: shrink-header auto linear both;
 animation-timeline: scroll(block root);
-animation-range: 0px 150px;</pre>
+animation-range: 0px 150px;</pre
+                >
                 <div class="card-why">
                   <strong>Why the skill mattered</strong>
-                  The guide caught a critical gotcha: <code>animation-range</code>
-                  <em>must</em> be declared after the <code>animation</code>
-                  shorthand, or the shorthand silently resets it to its initial
-                  value. It also warned that the header must be
-                  <code>position: fixed</code> (not <code>static</code> or
-                  <code>relative</code>) — animating height on an in-flow element
-                  would alter the total scrollable distance, causing the percentage
-                  range to shift as the animation plays.
+                  The guide caught a critical gotcha: <code>animation-range</code> <em>must</em> be declared after the
+                  <code>animation</code>
+                  shorthand, or the shorthand silently resets it to its initial value. It also warned that the header
+                  must be
+                  <code>position: fixed</code> (not <code>static</code> or <code>relative</code>) — animating height on
+                  an in-flow element would alter the total scrollable distance, causing the percentage range to shift as
+                  the animation plays.
                 </div>
               </div>
             </article>
@@ -273,32 +246,29 @@ animation-range: 0px 150px;</pre>
               <div class="card-body">
                 <div class="card-block">
                   <strong>What you're seeing</strong>
-                  Scroll back to the top and slowly scroll down — the purple/cyan
-                  gradient background and the glowing orbs move at different rates
-                  from the rest of the page, creating an illusion of depth.
+                  Scroll back to the top and slowly scroll down — the purple/cyan gradient background and the glowing
+                  orbs move at different rates from the rest of the page, creating an illusion of depth.
                 </div>
                 <div class="card-block">
                   <strong>How it works</strong>
-                  Two separate <code>@keyframes</code> give the background and
-                  accent layers different <code>translateY</code> targets driven
-                  by the root <code>scroll()</code> timeline. Positive translateY
-                  makes a layer appear to move slower (far/background); negative
-                  makes it appear faster (near/foreground).
+                  Two separate <code>@keyframes</code> give the background and accent layers different
+                  <code>translateY</code> targets driven by the root <code>scroll()</code> timeline. Positive translateY
+                  makes a layer appear to move slower (far/background); negative makes it appear faster
+                  (near/foreground).
                 </div>
-                <pre class="code-snippet">animation: parallax-bg linear both;
+                <pre class="code-snippet">
+animation: parallax-bg linear both;
 animation-timeline: scroll();
-animation-range: 0px 100vh;</pre>
+animation-range: 0px 100vh;</pre
+                >
                 <div class="card-why">
                   <strong>Why the skill mattered</strong>
-                  The guide's primary recommendation is <code>view-timeline</code>
-                  for mid-page sections. But for a <code>100vh</code> hero at the
-                  very top, the <code>cover</code> range's start point falls at
-                  <code>scrollY = -100vh</code> — before the page begins — so the
-                  animation would be nearly invisible on load. The guide's explanation
-                  of when to use each timeline type led directly to choosing
-                  <code>scroll()</code> with <code>animation-range: 0px 100vh</code>
-                  instead. It also specified <code>overflow: clip</code> (not
-                  <code>hidden</code>) on the wrapper to avoid creating an unintended
+                  The guide's primary recommendation is <code>view-timeline</code> for mid-page sections. But for a
+                  <code>100vh</code> hero at the very top, the <code>cover</code> range's start point falls at
+                  <code>scrollY = -100vh</code> — before the page begins — so the animation would be nearly invisible on
+                  load. The guide's explanation of when to use each timeline type led directly to choosing
+                  <code>scroll()</code> with <code>animation-range: 0px 100vh</code> instead. It also specified
+                  <code>overflow: clip</code> (not <code>hidden</code>) on the wrapper to avoid creating an unintended
                   block formatting context.
                 </div>
               </div>
@@ -313,62 +283,70 @@ animation-range: 0px 100vh;</pre>
               <div class="card-body">
                 <div class="card-block">
                   <strong>What you're seeing</strong>
-                  These cards — including this one — fade and slide upward as they
-                  enter the viewport, and fade out as they leave. Scroll up and
-                  back down to see it repeat.
+                  These cards — including this one — fade and slide upward as they enter the viewport, and fade out as
+                  they leave. Scroll up and back down to see it repeat.
                 </div>
                 <div class="card-block">
                   <strong>How it works</strong>
-                  Two separate <code>@keyframes</code> handle entry and exit. Each
-                  card has its own anonymous <code>view()</code> timeline. The
-                  <code>animation-range: entry, exit</code> declaration maps the
-                  first animation to the entry phase and the second to the exit phase.
+                  Two separate <code>@keyframes</code> handle entry and exit. Each card has its own anonymous
+                  <code>view()</code> timeline. The <code>animation-range: entry, exit</code> declaration maps the first
+                  animation to the entry phase and the second to the exit phase.
                 </div>
-                <pre class="code-snippet">animation:
+                <pre class="code-snippet">
+animation:
   card-in  auto linear backwards,
   card-out auto linear forwards;
 animation-timeline: view();
-animation-range: entry, exit;</pre>
+animation-range: entry, exit;</pre
+                >
                 <div class="card-why">
                   <strong>Why the skill mattered</strong>
-                  The dual-animation pattern — one keyframe per phase, each with a
-                  complementary <code>fill-mode</code> (<code>backwards</code> for
-                  entry, <code>forwards</code> for exit) — is non-obvious. Without
-                  the guide, the natural instinct would be a single animation or
-                  a JavaScript-based Intersection&shy;Observer toggle. The guide
-                  also confirmed the same declaration-order gotcha as the header:
-                  <code>animation-range</code> must follow the <code>animation</code>
+                  The dual-animation pattern — one keyframe per phase, each with a complementary
+                  <code>fill-mode</code> (<code>backwards</code> for entry, <code>forwards</code> for exit) — is
+                  non-obvious. Without the guide, the natural instinct would be a single animation or a JavaScript-based
+                  Intersection&shy;Observer toggle. The guide also confirmed the same declaration-order gotcha as the
+                  header: <code>animation-range</code> must follow the <code>animation</code>
                   shorthand to avoid being silently reset.
                 </div>
               </div>
             </article>
-
           </div>
         </div>
       </section>
-
     </main>
 
     <footer>
       <div class="container">
         <div class="footer-inner">
           <p>
-            Built with
+            Built by
+            <a href="https://github.com/syknapse" target="_blank" rel="noopener noreferrer">Syk Houdeib</a>
+            with
             <a href="https://claude.ai/code" target="_blank" rel="noopener noreferrer">Claude Code</a>
             using the
-            <a href="https://github.com/GoogleChrome/modern-web-guidance" target="_blank" rel="noopener noreferrer">Modern Web Guidance</a>
+            <a href="https://github.com/GoogleChrome/modern-web-guidance" target="_blank" rel="noopener noreferrer"
+              >Modern Web Guidance</a
+            >
             skill by Google Chrome.
           </p>
           <nav class="footer-links" aria-label="Footer links">
-            <a href="https://github.com/GoogleChrome/modern-web-guidance" target="_blank" rel="noopener noreferrer">Plugin source</a>
-            <a href="https://developer.chrome.com/docs/css-ui/scroll-driven-animations" target="_blank" rel="noopener noreferrer">Scroll-driven animations docs</a>
-            <a href="https://claude.ai/code" target="_blank" rel="noopener noreferrer">Claude Code</a>
+            <a
+              href="https://developer.chrome.com/docs/modern-web-guidance/get-started#claude_code"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Claude MWG plugin installation guide</a
+            >
+            <a
+              href="https://developer.chrome.com/docs/css-ui/scroll-driven-animations"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Scroll-driven animations docs</a
+            >
           </nav>
         </div>
       </div>
     </footer>
 
     <script src="js/fallbacks.js"></script>
-
   </body>
 </html>

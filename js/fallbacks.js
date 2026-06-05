@@ -48,7 +48,7 @@ if (
   const header = document.querySelector('header');
 
   if (header) {
-    const INITIAL_HEIGHT = 72;   // matches --header-height in variables.css
+    const INITIAL_HEIGHT = 100;  // matches --header-height in variables.css
     const FINAL_HEIGHT   = 36;   // matches --header-height-shrunk
     const SCROLL_DISTANCE = 150; // matches animation-range end in header.css
 

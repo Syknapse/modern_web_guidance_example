@@ -3,29 +3,29 @@
  * Retrieved via: npx modern-web-guidance retrieve "scroll-progress-indicator"
  *
  * Key guidance applied:
- *  - Use animation-timeline: scroll() to drive the scaleX animation from the root scroller
- *  - The element MUST have aria-hidden="true" — it is decorative and must be removed
- *    from the assistive technology reading tree
+ *  - Use animation-timeline: scroll(root) to drive the scaleX animation from
+ *    the root scroller. scroll(root) is explicit here because the element lives
+ *    inside a position:fixed header, so using the default "nearest" ancestor
+ *    could be ambiguous; scroll(root) removes that ambiguity
+ *  - The element MUST have aria-hidden="true" — it is decorative and must be
+ *    removed from the assistive technology reading tree
  *  - Wrap in @supports to skip silently in unsupported browsers
- *  - Do NOT use the scroll-timeline-polyfill package for the fallback — the guide
- *    explicitly warns it is not feature-complete and has known issues
+ *  - Do NOT use the scroll-timeline-polyfill package for the fallback — the
+ *    guide explicitly warns it is not feature-complete and has known issues
  *  - Fallback: a plain scroll listener (see js/fallbacks.js)
+ *
+ *  Placement: the bar lives inside <header> as position:absolute at its bottom
+ *  edge so it never overlaps the logo or navigation.
  */
 
 #progress {
-  position: fixed;
-  top: 0;
+  position: absolute;
+  bottom: -6px;
   left: 0;
-  z-index: 100;
   width: 100%;
   height: 6px;
-  background: linear-gradient(
-    to right,
-    var(--color-accent) 0%,
-    var(--color-accent-light) 50%,
-    var(--color-cyan) 100%
-  );
-  box-shadow: 0 0 12px 2px rgba(167, 139, 250, 0.7);
+  background: linear-gradient(to right, var(--color-accent) 0%, var(--color-accent-light) 50%, var(--color-cyan) 100%);
+  box-shadow: 0 0 14px 3px rgba(167, 139, 250, 0.65);
   transform-origin: 0 50%;
   transform: scaleX(0);
 }
@@ -33,8 +33,12 @@
 @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: scroll()) {
     @keyframes grow-progress {
-      from { transform: scaleX(0); }
-      to   { transform: scaleX(1); }
+      from {
+        transform: scaleX(0);
+      }
+      to {
+        transform: scaleX(1);
+      }
     }
 
     #progress {
@@ -44,7 +48,7 @@
        * resets animation-timeline to its initial value if declared before it.
        */
       animation: grow-progress auto linear;
-      animation-timeline: scroll();
+      animation-timeline: scroll(root);
     }
   }
 }
